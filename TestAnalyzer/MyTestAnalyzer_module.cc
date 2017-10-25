@@ -49,8 +49,8 @@ public:
 private:
 
   // Declare member data here.
-  TFile * myTFile;
-  TTree * myTTree;
+  TFile * m_file;
+  TTree * m_tree;
 
 };
 
@@ -62,8 +62,8 @@ test::MyTestAnalyzer::MyTestAnalyzer(fhicl::ParameterSet const & p)
 {
   //create output tree                                                                                                             
   art::ServiceHandle<art::TFileService> tfs;                                                                                       
-  myTFile = new TFile("MyTestAnalyzer.root", "RECREATE");                                                                 
-  myTTree = tfs->make<TTree>("tree","Tree");
+  m_file = new TFile("MyTestAnalyzer.root", "RECREATE");                                                                 
+  m_tree = tfs->make<TTree>("tree","Tree");
   //add branches
   
 
@@ -74,9 +74,9 @@ test::MyTestAnalyzer::MyTestAnalyzer(fhicl::ParameterSet const & p)
 test::MyTestAnalyzer::~MyTestAnalyzer()
 {                                                                                                                                 
   //store output tree                                                                                                         
-  myTFile->cd();                                                                                                               
-  myTTree->Write("tree");                                                                                            
-  myTFile->Close();                                                                                                        
+  m_file->cd();                                                                                                               
+  m_tree->Write("tree");                                                                                            
+  m_file->Close();                                                                                                        
   std::cout << "End!" << std::endl;                                                                                     
 }
 
