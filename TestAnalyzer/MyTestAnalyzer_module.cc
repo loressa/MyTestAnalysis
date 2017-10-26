@@ -26,8 +26,10 @@ namespace test {
   class MyTestAnalyzer;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------
 
-class test::MyTestAnalyzer : public art::EDAnalyzer {
+class test::MyTestAnalyzer : public art::EDAnalyzer 
+{
 public:
   explicit MyTestAnalyzer(fhicl::ParameterSet const & p);
   // The compiler-generated destructor is fine for non-base
@@ -49,14 +51,14 @@ public:
 private:
 
   // Declare member data here.
-  TFile * m_file;
-  TTree * m_tree;
+  TFile *m_file;    ///< TFile for saving event information 
+  TTree *m_tree;    ///< TTree for saving event information
 
 };
 
+//------------------------------------------------------------------------------------------------------------------------------------------
 
-test::MyTestAnalyzer::MyTestAnalyzer(fhicl::ParameterSet const & p)
-  :
+test::MyTestAnalyzer::MyTestAnalyzer(fhicl::ParameterSet const & p) :
   EDAnalyzer(p)  // ,
  // More initializers here.
 {
@@ -66,10 +68,10 @@ test::MyTestAnalyzer::MyTestAnalyzer(fhicl::ParameterSet const & p)
   m_tree = tfs->make<TTree>("tree","Tree");
   //add branches
   
-
   this->reconfigure(p);
-
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
 
 test::MyTestAnalyzer::~MyTestAnalyzer()
 {                                                                                                                                 
@@ -80,12 +82,16 @@ test::MyTestAnalyzer::~MyTestAnalyzer()
   std::cout << "End!" << std::endl;                                                                                     
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------
+
 void test::MyTestAnalyzer::analyze(art::Event const & e)
 {
   // Implementation of required member function here.
 
   //your analysis goes here! 
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
 
 void test::MyTestAnalyzer::reconfigure(fhicl::ParameterSet const & p)
 {
